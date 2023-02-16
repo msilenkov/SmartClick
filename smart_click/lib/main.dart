@@ -1,3 +1,5 @@
+//TODO:  Разнести компоненты по свои файлам(виджетам), чтобы упростить сброку экрана и читку
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -91,7 +93,7 @@ class MyApp extends StatelessWidget {
                   ),
                 ),
                 //* Блок с Текстом
-                Container(
+                SizedBox(
                   width: 178,
                   child: Wrap(alignment: WrapAlignment.center, children: [
                     Text(
@@ -113,19 +115,303 @@ class MyApp extends StatelessWidget {
                   ]),
                 ),
                 //* Спсиок
+                //? Туду ниже под вопросом
                 // TODO: Доделать Card как элементы списка, на данный момент просто бесконечный список
-                Container(
-                  width: double.infinity,
-                  height: 402,
-                  color: Colors.blueAccent,
-                  child: ListView.builder(
-                      itemBuilder: (_, int index) => Text(index.toString())),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: SizedBox(
+                    width: double.infinity,
+                    height: 510,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        //* Умный дом
+                        SizedBox(
+                            width: double.infinity,
+                            height: 252,
+                            child: Card(
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 36.5, vertical: 30),
+                                //* Общий лемент
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    //* Элемент с кнопками
+                                    SizedBox(
+                                      width: double.infinity,
+                                      height: 108,
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(top: 10),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                SizedBox(
+                                                  child: Row(
+                                                    children: [
+                                                      SvgPicture.asset(
+                                                          'assets/images/Icon=Smart.svg'),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .only(left: 12),
+                                                        child: Text("Умный дом",
+                                                            style: TextStyle(
+                                                                fontFamily:
+                                                                    "SF Pro Rounded",
+                                                                color: Colors
+                                                                    .black,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                                fontSize: 20)),
+                                                      )
+                                                    ],
+                                                  ),
+                                                ),
+                                                Text("MOiO",
+                                                    style: TextStyle(
+                                                        fontFamily:
+                                                            "SF Pro Rounded",
+                                                        color: Color.fromRGBO(
+                                                            0, 0, 0, 0.3),
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        fontSize: 20))
+                                              ],
+                                            ),
+                                            Text(
+                                                "Используйте современные технологии\nавтоматизации квартиры или загородного\nдома от российских разработчиков.",
+                                                style: TextStyle(
+                                                    fontFamily:
+                                                        "SF Pro Rounded",
+                                                    color: Color.fromRGBO(
+                                                        0, 0, 0, 0.6),
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: 16)),
+                                          ],
+                                        ),
+                                      ),
+                                      //* Элемент с кнопками
+                                    ),
+                                    Container(
+                                      width: double.infinity,
+                                      height: 50,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          //* Кнопка Демо-режим
+                                          ElevatedButton(
+                                              onPressed: () {},
+                                              child: Text("Демо-режим",
+                                                  style: TextStyle(
+                                                      fontFamily:
+                                                          "SF Pro Rounded",
+                                                      color: Colors.black,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontSize: 16)),
+                                              style: ButtonStyle(
+                                                  backgroundColor:
+                                                      MaterialStateProperty.all(
+                                                          Color(0xFFEEEEEE)),
+                                                  fixedSize:
+                                                      MaterialStateProperty.all(
+                                                          Size(157, 74)),
+                                                  shape: MaterialStateProperty
+                                                      .all(RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                                  Radius.circular(13)))))),
+                                          //* Кнопка Подключить
+                                          ElevatedButton(
+                                              onPressed: () {},
+                                              child: Text("Подключить",
+                                                  style: TextStyle(
+                                                      fontFamily:
+                                                          "SF Pro Rounded",
+                                                      color: Colors.white,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      fontSize: 16)),
+                                              style: ButtonStyle(
+                                                  backgroundColor:
+                                                      MaterialStateProperty.all(
+                                                          Color(0xFF00C14D)),
+                                                  fixedSize:
+                                                      MaterialStateProperty.all(
+                                                          Size(157, 74)),
+                                                  shape: MaterialStateProperty
+                                                      .all(RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                                  Radius.circular(13)))))),
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(36)),
+                            )),
+                        //* Интернет и тв
+                        SizedBox(
+                            width: double.infinity,
+                            height: 252,
+                            child: Card(
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 36.5, vertical: 30),
+                                //* Общий лемент
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    //* Элемент с кнопками
+                                    SizedBox(
+                                      width: double.infinity,
+                                      height: 108,
+
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(top: 10),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                SizedBox(
+                                                  child: Row(
+                                                    children: [
+                                                      SvgPicture.asset(
+                                                          'assets/images/Icon=Internet.svg'),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .only(left: 12),
+                                                        child: Text(
+                                                            "Интернет и ТВ ",
+                                                            style: TextStyle(
+                                                                fontFamily:
+                                                                    "SF Pro Rounded",
+                                                                color: Colors
+                                                                    .black,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                                fontSize: 20)),
+                                                      )
+                                                    ],
+                                                  ),
+                                                ),
+                                                Text("KaspNet",
+                                                    style: TextStyle(
+                                                        fontFamily:
+                                                            "SF Pro Rounded",
+                                                        color: Color.fromRGBO(
+                                                            0, 0, 0, 0.3),
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        fontSize: 20))
+                                              ],
+                                            ),
+                                            Text(
+                                                "Подключайте высокоскоростной интернет\nи телевидение для дома и бизнеса.",
+                                                style: TextStyle(
+                                                    fontFamily:
+                                                        "SF Pro Rounded",
+                                                    color: Color.fromRGBO(
+                                                        0, 0, 0, 0.6),
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: 16)),
+                                          ],
+                                        ),
+                                      ),
+                                      //* Элемент с кнопками
+                                    ),
+                                    Container(
+                                      width: double.infinity,
+                                      height: 50,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          //* Кнопка Тест скорости
+                                          ElevatedButton(
+                                              onPressed: () {},
+                                              child: Text("Тест скорости",
+                                                  style: TextStyle(
+                                                      fontFamily:
+                                                          "SF Pro Rounded",
+                                                      color: Colors.black,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontSize: 16)),
+                                              style: ButtonStyle(
+                                                  backgroundColor:
+                                                      MaterialStateProperty.all(
+                                                          Color(0xFFEEEEEE)),
+                                                  fixedSize:
+                                                      MaterialStateProperty.all(
+                                                          Size(157, 74)),
+                                                  shape: MaterialStateProperty
+                                                      .all(RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                                  Radius.circular(13)))))),
+                                          //* Кнопка Подключить
+                                          ElevatedButton(
+                                              onPressed: () {},
+                                              child: Text("Подключить",
+                                                  style: TextStyle(
+                                                      fontFamily:
+                                                          "SF Pro Rounded",
+                                                      color: Colors.white,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      fontSize: 16)),
+                                              style: ButtonStyle(
+                                                  backgroundColor:
+                                                      MaterialStateProperty.all(
+                                                          Color(0xFF00C14D)),
+                                                  fixedSize:
+                                                      MaterialStateProperty.all(
+                                                          Size(157, 74)),
+                                                  shape: MaterialStateProperty
+                                                      .all(RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                                  Radius.circular(13)))))),
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(36)),
+                            )),
+                      ],
+                    ),
+                  ),
                 ),
                 //* Нижний элемент Card
                 Padding(
                   padding:
                       const EdgeInsets.only(bottom: 21, left: 10, right: 10),
-                  child: Container(
+                  child: SizedBox(
                       width: double.infinity,
                       child: Card(
                           color: Colors.white,
