@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 9, left: 18, right: 22),
+                  padding: const EdgeInsets.only(top: 57, left: 18, right: 22),
                   //* Ряд верхних кнопок
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
