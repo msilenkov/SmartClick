@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:smart_click/screens/sign.dart';
 import 'package:smart_click/widgets/info_card.dart';
 
 class EnterScreen extends StatelessWidget {
@@ -53,7 +54,12 @@ class EnterScreen extends StatelessWidget {
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(13))))),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => SignScreen()));
+                          },
                           child: Text(
                             'Привязать номер',
                             style: TextStyle(
