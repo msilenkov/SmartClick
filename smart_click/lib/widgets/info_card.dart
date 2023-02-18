@@ -44,7 +44,7 @@ class InfoCard extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.only(left: 12),
                               child: Text(title,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontFamily: "SF Pro Rounded",
                                       color: Colors.black,
                                       fontWeight: FontWeight.w500,
@@ -54,7 +54,7 @@ class InfoCard extends StatelessWidget {
                         ),
                       ),
                       Text(companyName,
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontFamily: "SF Pro Rounded",
                               color: Color.fromRGBO(0, 0, 0, 0.3),
                               fontWeight: FontWeight.w500,
@@ -62,7 +62,7 @@ class InfoCard extends StatelessWidget {
                     ],
                   ),
                   Text(mainText,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontFamily: "SF Pro Rounded",
                           color: Color.fromRGBO(0, 0, 0, 0.6),
                           fontWeight: FontWeight.w400,
@@ -72,7 +72,7 @@ class InfoCard extends StatelessWidget {
 
               //* Элемент с кнопками
             ),
-            Container(
+            SizedBox(
               width: double.infinity,
               height: 50,
               child: Row(
@@ -88,28 +88,30 @@ class InfoCard extends StatelessWidget {
                               fontWeight: FontWeight.w500,
                               fontSize: 16)),
                       style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all(Color(0xFFEEEEEE)),
-                          fixedSize: MaterialStateProperty.all(Size(150, 74)),
+                          backgroundColor: MaterialStateProperty.all(
+                              const Color(0xFFEEEEEE)),
+                          fixedSize:
+                              MaterialStateProperty.all(const Size(150, 74)),
                           shape: MaterialStateProperty.all(
-                              RoundedRectangleBorder(
+                              const RoundedRectangleBorder(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(13)))))),
                   //* Правая кнопка
                   ElevatedButton(
                       onPressed: () {},
-                      child: Text("Подключить",
+                      child: const Text("Подключить",
                           style: TextStyle(
                               fontFamily: "SF Pro Rounded",
                               color: Colors.white,
                               fontWeight: FontWeight.w500,
                               fontSize: 16)),
                       style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all(Color(0xFF00C14D)),
-                          fixedSize: MaterialStateProperty.all(Size(150, 74)),
+                          backgroundColor: MaterialStateProperty.all(
+                              const Color(0xFF00C14D)),
+                          fixedSize:
+                              MaterialStateProperty.all(const Size(150, 74)),
                           shape: MaterialStateProperty.all(
-                              RoundedRectangleBorder(
+                              const RoundedRectangleBorder(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(13)))))),
                 ],

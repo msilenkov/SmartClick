@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:smart_click/screens/sign.dart';
+import 'package:smart_click/screens/first_sign.dart';
+
 import 'package:smart_click/widgets/info_card.dart';
 
 class EnterScreen extends StatelessWidget {
@@ -11,7 +12,7 @@ class EnterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color.fromARGB(255, 238, 238, 238),
+        backgroundColor: const Color.fromARGB(255, 238, 238, 238),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -26,16 +27,16 @@ class EnterScreen extends StatelessWidget {
                       ElevatedButton(
                           style: ButtonStyle(
                               padding: MaterialStateProperty.all(
-                                  EdgeInsets.symmetric(
+                                  const EdgeInsets.symmetric(
                                       vertical: 16, horizontal: 17)),
                               minimumSize:
-                                  MaterialStateProperty.all(Size(56, 38)),
+                                  MaterialStateProperty.all(const Size(56, 38)),
                               shape: MaterialStateProperty.all(
-                                  RoundedRectangleBorder(
+                                  const RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(13))))),
                           onPressed: null,
-                          child: Icon(
+                          child: const Icon(
                             Icons.expand_more,
                             // color: Colors.black,
                           )),
@@ -43,24 +44,24 @@ class EnterScreen extends StatelessWidget {
                         padding: const EdgeInsets.only(left: 10),
                         child: ElevatedButton(
                           style: ButtonStyle(
-                              backgroundColor:
-                                  MaterialStateProperty.all(Color(0xFF00C14D)),
+                              backgroundColor: MaterialStateProperty.all(
+                                  const Color(0xFF00C14D)),
                               padding: MaterialStateProperty.all(
-                                  EdgeInsets.symmetric(
+                                  const EdgeInsets.symmetric(
                                       vertical: 16, horizontal: 15)),
                               minimumSize:
-                                  MaterialStateProperty.all(Size(0, 38)),
+                                  MaterialStateProperty.all(const Size(0, 38)),
                               shape: MaterialStateProperty.all(
-                                  RoundedRectangleBorder(
+                                  const RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(13))))),
                           onPressed: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => SignScreen()));
+                                    builder: (context) => FirstSignScreen()));
                           },
-                          child: Text(
+                          child: const Text(
                             'Привязать номер',
                             style: TextStyle(
                                 color: Colors.white,
@@ -75,15 +76,16 @@ class EnterScreen extends StatelessWidget {
                   ElevatedButton(
                       style: ButtonStyle(
                           padding: MaterialStateProperty.all(
-                              EdgeInsets.symmetric(
+                              const EdgeInsets.symmetric(
                                   vertical: 16, horizontal: 17)),
-                          minimumSize: MaterialStateProperty.all(Size(56, 38)),
+                          minimumSize:
+                              MaterialStateProperty.all(const Size(56, 38)),
                           shape: MaterialStateProperty.all(
-                              RoundedRectangleBorder(
+                              const RoundedRectangleBorder(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(13))))),
                       onPressed: null,
-                      child: Icon(
+                      child: const Icon(
                         Icons.more_horiz,
                         // color: Colors.black,
                       )),
@@ -91,7 +93,7 @@ class EnterScreen extends StatelessWidget {
               ),
             ),
             //* Блок с Текстом
-            SizedBox(
+            const SizedBox(
               width: 178,
               child: Wrap(alignment: WrapAlignment.center, children: [
                 Text(
@@ -114,8 +116,8 @@ class EnterScreen extends StatelessWidget {
             ),
 
             //* 2 Карточки
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10),
               child: SizedBox(
                 width: double.infinity,
                 height: 510,
@@ -158,7 +160,7 @@ class EnterScreen extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(99)),
                       child: ListTile(
-                          title: Align(
+                          title: const Align(
                             alignment: Alignment.centerLeft,
                             child: Text(
                               "Мой дом",
@@ -173,7 +175,7 @@ class EnterScreen extends StatelessWidget {
                               SvgPicture.asset('assets/images/Icon=Smart.svg'),
                           trailing: TextButton(
                               onPressed: () {},
-                              child: Text(
+                              child: const Text(
                                 "Добавить устройство",
                                 style: TextStyle(
                                     fontFamily: "SF Pro Rounded",
