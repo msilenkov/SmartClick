@@ -19,9 +19,10 @@ class InfoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      elevation: 0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(36)),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 36),
+        padding: const EdgeInsets.fromLTRB(36, 20, 36, 30),
         //* Общий лемент
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -42,7 +43,7 @@ class InfoCard extends StatelessWidget {
                           children: [
                             SvgPicture.asset(assetPath),
                             Padding(
-                              padding: const EdgeInsets.only(left: 12),
+                              padding: const EdgeInsets.only(left: 10),
                               child: Text(title,
                                   style: const TextStyle(
                                       fontFamily: "SF Pro Rounded",
@@ -81,12 +82,6 @@ class InfoCard extends StatelessWidget {
                   //* Левая кнопка
                   ElevatedButton(
                       onPressed: () {},
-                      child: Text(leftButtonText,
-                          style: TextStyle(
-                              fontFamily: "SF Pro Rounded",
-                              color: Colors.black,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 16)),
                       style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all(
                               const Color(0xFFEEEEEE)),
@@ -95,25 +90,29 @@ class InfoCard extends StatelessWidget {
                           shape: MaterialStateProperty.all(
                               const RoundedRectangleBorder(
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(13)))))),
+                                      BorderRadius.all(Radius.circular(13))))),
+                      child: Text(leftButtonText,
+                          style: const TextStyle(
+                              fontFamily: "SF Pro Rounded",
+                              color: Colors.black,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16))),
                   //* Правая кнопка
                   ElevatedButton(
-                      onPressed: () {},
-                      child: const Text("Подключить",
-                          style: TextStyle(
-                              fontFamily: "SF Pro Rounded",
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 16)),
-                      style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(
-                              const Color(0xFF00C14D)),
-                          fixedSize:
-                              MaterialStateProperty.all(const Size(150, 74)),
-                          shape: MaterialStateProperty.all(
-                              const RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(13)))))),
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF00C14D),
+                        fixedSize: const Size(150, 74),
+                        shape: const RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(13)))),
+                    child: const Text("Подключить",
+                        style: TextStyle(
+                            fontFamily: "SF Pro Rounded",
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16)),
+                  ),
                 ],
               ),
             )

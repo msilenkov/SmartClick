@@ -34,7 +34,6 @@ dependencies:
     sdk: flutter
   flutter_svg: ^2.0.1
   mask_text_input_formatter: ^2.4.0
-  timer_button_fork: ^3.0.2
 
 dev_dependencies:
   flutter_lints: ^2.0.0

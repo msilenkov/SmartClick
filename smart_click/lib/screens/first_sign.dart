@@ -12,7 +12,7 @@ class FirstSignScreen extends StatefulWidget {
 class _FirstSignScreenState extends State<FirstSignScreen> {
   //* Маска для номера телефона
   var maskFormatter = MaskTextInputFormatter(
-      mask: '+# ### ### ## ##',
+      mask: '+7 ### ### ## ##',
       filter: {"#": RegExp(r'[0-9]')},
       type: MaskAutoCompletionType.lazy);
   //*  проверкра на пустоту текстового поля
@@ -22,6 +22,7 @@ class _FirstSignScreenState extends State<FirstSignScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: const Color.fromARGB(255, 238, 238, 238),
       body: Padding(
         padding: const EdgeInsets.only(top: 114),
@@ -33,24 +34,31 @@ class _FirstSignScreenState extends State<FirstSignScreen> {
               //*  Главынй текст
               const SizedBox(
                 width: 178,
-                child: Wrap(alignment: WrapAlignment.center, children: [
-                  Text(
-                    "Умный дом",
-                    style: TextStyle(
-                        fontFamily: "SF Pro Rounded",
-                        color: Colors.black,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 28),
-                  ),
-                  Text(
-                    "Интернет и тв",
-                    style: TextStyle(
-                        fontFamily: "SF Pro Rounded",
-                        color: Colors.black,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 28),
-                  ),
-                ]),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 1.01),
+                      child: Text(
+                        "Умный дом",
+                        style: TextStyle(
+                            height: 0,
+                            fontFamily: "SF Pro Rounded",
+                            color: Colors.black,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 28),
+                      ),
+                    ),
+                    Text(
+                      "Интернет и тв",
+                      style: TextStyle(
+                          height: 0,
+                          fontFamily: "SF Pro Rounded",
+                          color: Colors.black,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 28),
+                    ),
+                  ],
+                ),
               ),
               //* Основная форма ввода
               SizedBox(
@@ -85,17 +93,18 @@ class _FirstSignScreenState extends State<FirstSignScreen> {
                         onFocusChange: (focused) {
                           focusFromTextField = focused ? true : false;
                         },
-                        child: TextField(
+                        child: TextFormField(
+                          initialValue: "+7",
                           onChanged: (value) {
                             setState(() {
-                              if (value.isNotEmpty) {
+                              if (value.length == 16) {
                                 textFieldIsEmpty = false;
                               } else
                                 textFieldIsEmpty = true;
                             });
                           },
                           inputFormatters: [maskFormatter],
-                          maxLength: 18,
+                          maxLength: 16,
                           textAlignVertical: TextAlignVertical.center,
                           style: const TextStyle(
                               fontFamily: "SF Pro Rounded",
@@ -126,31 +135,31 @@ class _FirstSignScreenState extends State<FirstSignScreen> {
                       ),
                     ),
                     //*  Кнопка подтверждения
-                    if (focusFromTextField)
-                      ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              disabledBackgroundColor:
-                                  Color.fromARGB(15, 0, 0, 0),
-                              backgroundColor: Colors.black,
-                              minimumSize: const Size(295, 55),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(13))),
-                          onPressed: textFieldIsEmpty
-                              ? null
-                              : () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              SecondSignScreen()));
-                                },
-                          child: const Text("получить код для входа",
-                              style: TextStyle(
-                                fontFamily: "SF Pro Rounded",
-                                color: Color.fromARGB(255, 238, 238, 238),
-                                fontWeight: FontWeight.w400,
-                                fontSize: 20,
-                              ))),
+
+                    ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            disabledBackgroundColor:
+                                Color.fromARGB(15, 0, 0, 0),
+                            backgroundColor: Colors.black,
+                            minimumSize: const Size(295, 55),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(13))),
+                        onPressed: textFieldIsEmpty
+                            ? null
+                            : () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            SecondSignScreen()));
+                              },
+                        child: const Text("получить код для входа",
+                            style: TextStyle(
+                              fontFamily: "SF Pro Rounded",
+                              color: Color.fromARGB(255, 238, 238, 238),
+                              fontWeight: FontWeight.w400,
+                              fontSize: 20,
+                            ))),
                     //* Кнопка пропуска
                     TextButton(
                         onPressed: () {},
@@ -166,6 +175,7 @@ class _FirstSignScreenState extends State<FirstSignScreen> {
                 ),
               ),
               //* Комерческая информация (Нижний текст)
+
               const Padding(
                 padding: EdgeInsets.only(bottom: 52),
                 child: SizedBox(

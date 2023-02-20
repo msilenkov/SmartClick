@@ -224,14 +224,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.4.18"
-  timer_button_fork:
-    dependency: "direct main"
-    description:
-      name: timer_button_fork
-      sha256: "82dae8be84f97b419659e680178d0d48252a1e4ec4d66cf07e53bd31ed4d8c08"
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.0.2"
   vector_graphics:
     dependency: transitive
     description:
