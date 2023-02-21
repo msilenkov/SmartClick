@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:argon_buttons_flutter_fix/argon_buttons_flutter.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -24,34 +26,25 @@ class _SecondSignScreenState extends State<SecondSignScreen> {
   var focusFromTextField = true;
   final _formKey = GlobalKey<FormState>();
   var valid = true;
+  String textColorKey = 'defaultTextColor';
+  String backgroundColorKey = 'defaultBackgroundColor';
+  String borderColorKey = 'defaultBorderColor';
+  var colorElementMap = {
+    'defaultTextColor': Colors.black,
+    'errorTextColor': Color.fromRGBO(255, 0, 0, 1),
+    'successTextColor': Color.fromARGB(255, 0, 255, 55),
+    'defaultBackgroundColor': Color.fromARGB(10, 0, 0, 0),
+    'errorBackgroundColor': Color.fromRGBO(255, 0, 0, 0.05),
+    'successBackgroundColor': Color.fromARGB(15, 0, 255, 55),
+    'defaultBorderColor': Color.fromARGB(0, 0, 0, 0),
+    'successBorderColor': Color.fromARGB(255, 0, 255, 55),
+  };
 
   Color getColor() {
     if (valid) {
       return Color.fromARGB(10, 0, 0, 0);
     } else {
       return Color.fromARGB(5, 255, 0, 0);
-    }
-  }
-
-  Color getBorderColor() {
-    if (valid) {
-      return Color.fromARGB(0, 0, 0, 0);
-    } else {
-      return Color.fromARGB(255, 255, 0, 0);
-    }
-  }
-
-  BorderSide getBorder() {
-    if (valid) {
-      return BorderSide(
-        width: 0,
-        style: BorderStyle.none,
-      );
-    } else {
-      return BorderSide(
-        width: 1,
-        style: BorderStyle.solid,
-      );
     }
   }
 
@@ -129,10 +122,13 @@ class _SecondSignScreenState extends State<SecondSignScreen> {
                             child: TextFormField(
                               onEditingComplete: () {
                                 if (_formKey.currentState!.validate()) {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => EnterScreen()));
+                                  Timer(Duration(seconds: 3), () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const EnterScreen()));
+                                  });
                                 }
                               },
                               onChanged: (value) {
@@ -147,9 +143,9 @@ class _SecondSignScreenState extends State<SecondSignScreen> {
                               maxLength: 4,
                               textAlignVertical: TextAlignVertical.center,
                               textAlign: TextAlign.center,
-                              style: const TextStyle(
+                              style: TextStyle(
                                   fontFamily: "SF Pro Rounded",
-                                  color: Colors.black,
+                                  color: colorElementMap[textColorKey],
                                   fontWeight: FontWeight.w400,
                                   fontSize: 28),
                               keyboardType: TextInputType.number,
@@ -158,21 +154,39 @@ class _SecondSignScreenState extends State<SecondSignScreen> {
                                   contentPadding: const EdgeInsets.only(
                                       left: 0, right: 0, top: 0, bottom: 0),
                                   filled: true,
-                                  fillColor: getColor(),
-                                  border: OutlineInputBorder(
+                                  fillColor:
+                                      colorElementMap[backgroundColorKey],
+                                  border: const OutlineInputBorder(
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(13)),
-                                      borderSide: getBorder()),
-                                  errorStyle: const TextStyle(
-                                    fontSize: 0,
-                                  ),
-                                  errorBorder: const OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        width: 0,
+                                      )),
+                                  enabledBorder: OutlineInputBorder(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(13)),
+                                      borderSide: BorderSide(
+                                          width: 0,
+                                          color: colorElementMap[borderColorKey]
+                                              as Color)),
+                                  focusedBorder: OutlineInputBorder(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(13)),
+                                      borderSide: BorderSide(
+                                        width: 1,
+                                        color: colorElementMap[borderColorKey]
+                                            as Color,
+                                      )),
+                                  focusedErrorBorder: const OutlineInputBorder(
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(13)),
                                       borderSide: BorderSide(
                                           width: 1,
                                           color:
                                               Color.fromARGB(255, 255, 0, 0))),
+                                  errorStyle: const TextStyle(
+                                    fontSize: 0,
+                                  ),
                                   hintText: '****',
                                   hintStyle: const TextStyle(
                                       fontFamily: "SF Pro Rounded",
@@ -182,16 +196,24 @@ class _SecondSignScreenState extends State<SecondSignScreen> {
                                 if (value == "0000") {
                                   setState(() {
                                     valid = false;
+                                    textColorKey = "errorTextColor";
+                                    backgroundColorKey = "errorBackgroundColor";
                                   });
                                   return '';
                                 } else if (value == null || value.length != 4) {
                                   setState(() {
                                     valid = false;
+                                    textColorKey = "errorTextColor";
+                                    backgroundColorKey = "errorBackgroundColor";
                                   });
                                   return '';
                                 } else {
                                   setState(() {
                                     valid = true;
+                                    textColorKey = "successTextColor";
+                                    backgroundColorKey =
+                                        "successBackgroundColor";
+                                    borderColorKey = 'successBorderColor';
                                   });
                                 }
                                 return null;
