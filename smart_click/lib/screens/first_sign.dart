@@ -63,7 +63,7 @@ class _FirstSignScreenState extends State<FirstSignScreen> {
               //* Основная форма ввода
               SizedBox(
                 width: 292,
-                height: 220,
+                height: 264,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -85,6 +85,7 @@ class _FirstSignScreenState extends State<FirstSignScreen> {
                                 fontSize: 20))
                       ],
                     ),
+                    SizedBox(height: 24),
                     //*  Поле для ввода
                     SizedBox(
                       width: 295,
@@ -134,6 +135,7 @@ class _FirstSignScreenState extends State<FirstSignScreen> {
                         ),
                       ),
                     ),
+
                     //*  Кнопка подтверждения
 
                     ElevatedButton(
@@ -160,6 +162,7 @@ class _FirstSignScreenState extends State<FirstSignScreen> {
                               fontWeight: FontWeight.w400,
                               fontSize: 20,
                             ))),
+                    SizedBox(height: 10),
                     //* Кнопка пропуска
                     TextButton(
                         onPressed: () {},

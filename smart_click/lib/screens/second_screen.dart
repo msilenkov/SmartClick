@@ -89,9 +89,8 @@ class _SecondSignScreenState extends State<SecondSignScreen> {
               //* Основная форма ввода
               SizedBox(
                 width: 292,
-                height: 250,
+                height: 261,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     //*  Текстовый совет
                     const Wrap(
@@ -111,15 +110,17 @@ class _SecondSignScreenState extends State<SecondSignScreen> {
                                 fontSize: 20))
                       ],
                     ),
+                    SizedBox(height: 24),
                     //*  Поле для ввода
                     SizedBox(
-                      width: 150,
+                      width: 130,
                       height: 99,
                       child: Column(
                         children: [
                           Form(
                             key: _formKey,
                             child: TextFormField(
+                              textAlignVertical: TextAlignVertical.center,
                               onEditingComplete: () {
                                 if (_formKey.currentState!.validate()) {
                                   Timer(Duration(seconds: 3), () {
@@ -141,7 +142,6 @@ class _SecondSignScreenState extends State<SecondSignScreen> {
                               },
                               inputFormatters: [maskFormatter],
                               maxLength: 4,
-                              textAlignVertical: TextAlignVertical.center,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontFamily: "SF Pro Rounded",
@@ -187,10 +187,10 @@ class _SecondSignScreenState extends State<SecondSignScreen> {
                                   errorStyle: const TextStyle(
                                     fontSize: 0,
                                   ),
-                                  hintText: '****',
+                                  hintText: '⚹⚹⚹⚹',
                                   hintStyle: const TextStyle(
-                                      fontFamily: "SF Pro Rounded",
-                                      fontWeight: FontWeight.w400,
+                                      // fontFamily: "SF Pro Rounded",
+                                      fontWeight: FontWeight.w500,
                                       fontSize: 28)),
                               validator: (value) {
                                 if (value == "0000") {
@@ -243,15 +243,18 @@ class _SecondSignScreenState extends State<SecondSignScreen> {
                       height: 80,
                       width: MediaQuery.of(context).size.width * 1,
                       minWidth: MediaQuery.of(context).size.width * 0.7,
-                      child: const Text(
-                        "отправить повторно",
-                        style: TextStyle(
-                            decoration: TextDecoration.underline,
-                            decorationColor: Color.fromARGB(30, 0, 0, 0),
-                            fontFamily: "SF Pro Rounded",
-                            color: Color.fromARGB(30, 0, 0, 0),
-                            fontSize: 20,
-                            fontWeight: FontWeight.w400),
+                      child: Align(
+                        alignment: Alignment.topCenter,
+                        child: const Text(
+                          "отправить повторно",
+                          style: TextStyle(
+                              decoration: TextDecoration.underline,
+                              decorationColor: Color.fromARGB(30, 0, 0, 0),
+                              fontFamily: "SF Pro Rounded",
+                              color: Color.fromARGB(30, 0, 0, 0),
+                              fontSize: 20,
+                              fontWeight: FontWeight.w400),
+                        ),
                       ),
                       loader: (timeLeft) {
                         return Column(

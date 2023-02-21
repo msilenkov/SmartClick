@@ -30,7 +30,7 @@ class EnterScreen extends StatelessWidget {
                               disabledBackgroundColor:
                                   const Color.fromARGB(13, 0, 0, 0),
                               padding: const EdgeInsets.symmetric(
-                                  vertical: 16, horizontal: 20),
+                                  vertical: 8, horizontal: 20),
                               minimumSize: const Size(56, 38),
                               shape: const RoundedRectangleBorder(
                                   borderRadius:
@@ -46,7 +46,7 @@ class EnterScreen extends StatelessWidget {
                           style: ElevatedButton.styleFrom(
                               backgroundColor: const Color(0xFF00C14D),
                               padding: const EdgeInsets.symmetric(
-                                  vertical: 16, horizontal: 15),
+                                  vertical: 8, horizontal: 15),
                               minimumSize: const Size(0, 38),
                               shape: const RoundedRectangleBorder(
                                   borderRadius:
@@ -74,7 +74,7 @@ class EnterScreen extends StatelessWidget {
                           disabledBackgroundColor:
                               const Color.fromARGB(13, 0, 0, 0),
                           padding: const EdgeInsets.symmetric(
-                              vertical: 16, horizontal: 17),
+                              vertical: 8, horizontal: 17),
                           minimumSize: const Size(56, 38),
                           shape: const RoundedRectangleBorder(
                               borderRadius:
