@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { createUserDto } from './dto/create-user.dto';
+import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './users.model';
 
 @Injectable()
@@ -8,9 +9,16 @@ export class UsersService {
 
     constructor(@InjectModel(User) private userRepository: typeof User){}
 
-    async createUser(dto: createUserDto){
+    async createUser(dto: CreateUserDto){
         const user = await this.userRepository.create(dto);
         return user;
+    }
+
+    async getUserbyId(id: string){
+        const user = await this.userRepository.findOne({
+            where: {id: id}
+        })
+        return user; 
     }
 
     async getUserbyPhone(phone: string){
@@ -20,10 +28,10 @@ export class UsersService {
         return user;        
     }
 
-    // async updateUser(dto: createUserDto){
-    //     const user = await this.userRepository.update({pass: dto.pass}, {where: {phone: dto.phone}})
-    //     return user;
-    // }
+    async update(id: string, dto: UpdateUserDto){
+        const user = await this.userRepository.update({refreshtoken0: dto.refreshToken}, {where: {id: id}})
+        return user;
+    }
 
     // async findOrCreateUser(dto: createUserDto){
     //     const user = await this.userRepository.findOrCreate({

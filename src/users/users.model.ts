@@ -14,7 +14,10 @@ export class User extends Model<User>{
     @Column({type: DataType.STRING, allowNull: false})
     pass: string;
     @Column({type: DataType.STRING})
-    refreshtoken: string;
-
+    refreshtoken0: string;
+    @Column({type: DataType.STRING})
+    refreshtoken1: string;
+    @Column({type: DataType.STRING})
+    refreshtoken2: string;
 }
 
