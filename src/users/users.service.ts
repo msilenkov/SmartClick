@@ -9,6 +9,12 @@ export class UsersService {
 
     constructor(@InjectModel(User) private userRepository: typeof User){}
 
+    async findAll(){
+        const users = await this.userRepository.findAll()
+        return users
+    }
+
+
     async createUser(dto: CreateUserDto){
         const user = await this.userRepository.create(dto);
         return user;
@@ -28,24 +34,13 @@ export class UsersService {
         return user;        
     }
 
-    async update(id: string, dto: UpdateUserDto){
-        const user = await this.userRepository.update({refreshtoken0: dto.refreshToken}, {where: {id: id}})
+    async update(id: number, dto: UpdateUserDto){
+        const user = await this.userRepository.findOne({where: {id: id}})
+        if(user){
+            await this.userRepository.update({refreshtoken0: dto.refreshToken}, {where:{id:id}})
+        }
+
+        // const user = await this.userRepository.upsert({id: id, refreshtoken0: dto.refreshToken})
         return user;
     }
-
-    // async findOrCreateUser(dto: createUserDto){
-    //     const user = await this.userRepository.findOrCreate({
-    //         where:{phone: dto.phone, pass: dto.pass},
-    //     })
-    //     return user;
-    // }
-
-
-    // async getAllUsers(){
-    //     const users = await this.userRepository.findAll();
-    //     return users;
-    // }
-
-
-
 }

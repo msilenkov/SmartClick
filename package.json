@@ -29,6 +29,7 @@
     "@nestjs/platform-express": "^9.0.0",
     "@nestjs/sequelize": "^9.0.0",
     "@nestjs/swagger": "^6.2.1",
+    "argon2": "^0.30.3",
     "bcryptjs": "^2.4.3",
     "cross-env": "^7.0.3",
     "node-smsc": "^0.2.3",
