@@ -11,7 +11,7 @@ export class User extends Model<User>{
     id: number;
     @Column({type: DataType.STRING, unique: true, allowNull: false, primaryKey: true})
     phone: string;
-    @Column({type: DataType.STRING, allowNull: false})
+    @Column({type: DataType.STRING, allowNull: true})
     pass: string;
     @Column({type: DataType.STRING})
     refreshtoken0: string;

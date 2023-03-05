@@ -5,12 +5,13 @@ import { UsersModule } from 'src/users/users.module';
 import { JwtModule } from '@nestjs/jwt';
 import { AccessTokenStrategy } from './strategies/accessToken.strategy';
 import { RefreshTokenStrategy } from './strategies/refreshToken.strategy';
-import { ConfigService } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { HttpModule, HttpService } from '@nestjs/axios';
 
 @Module({
   providers: [AuthsService, AccessTokenStrategy, RefreshTokenStrategy, ConfigService],
   controllers: [AuthsController],
-  imports:[UsersModule,
+  imports:[UsersModule, HttpModule,
   JwtModule.register({
     secret: process.env.ACCESS_SECRET|| 'SECRET',
     signOptions: {expiresIn: '12h'}

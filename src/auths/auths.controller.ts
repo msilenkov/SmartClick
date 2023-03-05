@@ -11,6 +11,11 @@ export class AuthsController {
 
     constructor(private authsService: AuthsService){}
 
+    // @Get('sms')
+    // sendSms(@Body() phone: string, code: string){
+    //     return this.authsService.smsSend(phone, code)
+    // }
+
     @Post('singup')
     singUp(@Body() createUserDto: CreateUserDto){
         return this.authsService.singUp(createUserDto)

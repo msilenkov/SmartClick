@@ -5,13 +5,14 @@ import { UsersService } from 'src/users/users.service';
 import * as argon2 from 'argon2';
 import { ConfigService } from '@nestjs/config';
 import { AuthDto } from './auths/auth.dto';
-import { ApiForbiddenResponse } from '@nestjs/swagger';
+import { HttpService } from '@nestjs/axios';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable()
 export class AuthsService {
 
     constructor(private userService: UsersService,
-        private jwtService: JwtService, private configService: ConfigService){}
+        private jwtService: JwtService, private configService: ConfigService, private http: HttpService){}
 
    async singUp(userDto: CreateUserDto){
     //проверка существует ли пользователь
@@ -22,10 +23,14 @@ export class AuthsService {
     if(userExist){
         throw new BadRequestException('Пользователь уже существует');
     }
+    const code = this.smsGenerate(1111,9999).toString()
+    console.log(userDto.phone, code)
 
+    const pass = await this.smsSend(userDto.phone, code)
+    console.log(pass)
 
     const newUser = await this.userService.createUser({
-        ...userDto, phone: userDto.phone,
+        ...userDto, phone: userDto.phone, pass: code
     })
     const tokens = await this.getTokens(newUser.id.toString(), newUser.phone);
     await this.updateRefreshToken(newUser.id, tokens.refreshToken);
@@ -33,13 +38,17 @@ export class AuthsService {
    }
 
    async singIn(data: AuthDto){
-    //хешируем номер и проверяем есть ли такой хеш(пользователь)
-    // const hashPhone = await this.hashData(data.phone)
+    // проверяем есть ли такой пользователь и верен ли код
     const user = await this.userService.getUserbyPhone(data.phone)
     //кидаем ошибку если такого нет
     if(!user)throw new BadRequestException('Пользователь не существует');
+    // кидаем ошибку если пароль не верный
+    const userPswd = await this.userService.getUserbyPhone(data.phone)
+    if(userPswd.pass != data.pass)throw new BadRequestException('Код не верный');
+
     const tokens = await this.getTokens(user.id.toString(),user.phone);
     await this.updateRefreshToken(user.id, tokens.refreshToken)
+    await this.userService.remPass(user.id, {pass: null})
     return tokens;
    }
 
@@ -47,6 +56,20 @@ export class AuthsService {
     return this.userService.update(userId, {refreshToken: null});
   }
 
+  async smsSend(phone: string, code: string){
+    const login = process.env.SMS_LOGIN
+    const pswd = process.env.SMS_PSWD
+
+    const url = 'https://smsc.ru/sys/send.php?login='+login+'&psw='+pswd+'&phones='+phone+'&mes=Тестовый код '+code;
+
+    console.log(url)
+    const response =await firstValueFrom(this.http.get(url)) ;
+    return response.data
+}
+
+  smsGenerate(min: number, max: number){
+    return Math.floor(Math.random() * (max - min) + min)
+  }
   async updateRefreshToken(userId: number, refreshToken: string){
     const hasedRefreshToken = await this.hashData(refreshToken);
     await this.userService.update(userId,{refreshToken: hasedRefreshToken})

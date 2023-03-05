@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { CreateUserDto } from './dto/create-user.dto';
+import { DeletePass } from './dto/delete-pass-user.drt';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './users.model';
 
@@ -39,8 +40,13 @@ export class UsersService {
         if(user){
             await this.userRepository.update({refreshtoken0: dto.refreshToken}, {where:{id:id}})
         }
-
-        // const user = await this.userRepository.upsert({id: id, refreshtoken0: dto.refreshToken})
         return user;
+    }
+
+    async remPass(id: number, dto: DeletePass){
+        const user = await this.userRepository.findOne({where: {id:id}})
+        if(user){
+            await this.userRepository.update({pass: dto.pass}, {where:{id:id}})
+        }
     }
 }

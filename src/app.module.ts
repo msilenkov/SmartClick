@@ -3,7 +3,6 @@ import { ConfigModule } from "@nestjs/config";
 import { SequelizeModule } from "@nestjs/sequelize";
 import { User } from "./users/users.model";
 import { UsersModule } from './users/users.module';
-import { ApiModule } from './api/api.module';
 import { AuthsModule } from './auths/auths.module';
 
 
@@ -20,7 +19,7 @@ import { AuthsModule } from './auths/auths.module';
         password: process.env.POSTGRES_PASSWORD,
         database: process.env.POSTGRES_DB,
         models: [User],
-        autoLoadModels: true}), UsersModule, ApiModule, AuthsModule
+        autoLoadModels: true}), UsersModule, AuthsModule
     ]
 })
 export class AppModule{}
