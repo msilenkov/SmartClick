@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:smartclick/presentatios/screens/enter_screen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:smartclick/logic/cubits/auth/auth_cubit.dart';
+import 'package:smartclick/presentatios/router/app_router.dart';
 
 class SmartClick extends StatelessWidget {
-  const SmartClick({super.key});
+  SmartClick({super.key});
+  final AppRouter _appRouter = AppRouter();
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return BlocProvider<AuthCubit>(
+      create: (context) => AuthCubit(),
+      child: MaterialApp(
         theme: ThemeData(
             useMaterial3: true,
             fontFamily: "SF Pro Rounded",
@@ -15,6 +20,9 @@ class SmartClick extends StatelessWidget {
               TargetPlatform.android: CupertinoPageTransitionsBuilder()
             })),
         title: 'Flutter Demo',
-        home: const EnterScreen());
+        onGenerateRoute: _appRouter.onGenerateRoute,
+      ),
+    );
+    // home: const EnterScreen());
   }
 }

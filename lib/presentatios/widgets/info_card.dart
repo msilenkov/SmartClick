@@ -1,6 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import 'package:smartclick/logic/cubits/auth/auth_cubit.dart';
 
 class InfoCard extends StatelessWidget {
   final String title;
@@ -25,7 +28,7 @@ class InfoCard extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(36)),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 36),
-        //* Общий лемент
+        //* Общий элемент
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
@@ -81,7 +84,9 @@ class InfoCard extends StatelessWidget {
                 children: [
                   //* Левая кнопка
                   ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        BlocProvider.of<AuthCubit>(context).notautorize();
+                      },
                       style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all(
                               const Color(0xFFEEEEEE)),
@@ -98,7 +103,9 @@ class InfoCard extends StatelessWidget {
                               fontSize: 16))),
                   //* Правая кнопка
                   ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        BlocProvider.of<AuthCubit>(context).autorize();
+                      },
                       style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all(
                               const Color(0xFF00C14D)),

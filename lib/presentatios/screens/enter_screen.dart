@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:smartclick/logic/cubits/auth/auth_cubit.dart';
 import 'package:smartclick/presentatios/widgets/info_card.dart';
 import 'package:smartclick/presentatios/widgets/add_device.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:smartclick/presentatios/widgets/up_field.dart';
+import 'package:smartclick/presentatios/widgets/up_field_reg.dart';
 
 class EnterScreen extends StatelessWidget {
   const EnterScreen({
@@ -16,10 +19,18 @@ class EnterScreen extends StatelessWidget {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Padding(
-                padding: EdgeInsets.only(top: 57, left: 18, right: 22),
+            Padding(
+                padding: const EdgeInsets.only(top: 57, left: 18, right: 22),
                 //* Ряд верхних кнопок
-                child: UpField()),
+                child: BlocBuilder<AuthCubit, AuthState>(
+                  builder: (context, state) {
+                    if (state.autorized == false) {
+                      return const UpField();
+                    } else {
+                      return const UpFieldReg();
+                    }
+                  },
+                )),
             //* Блок с Текстом
             SizedBox(
               width: 178,

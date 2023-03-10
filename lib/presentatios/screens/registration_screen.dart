@@ -1,7 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:smartclick/presentatios/screens/second_reg_screen.dart';
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({super.key});
@@ -148,11 +147,8 @@ class _FirstSignScreenState extends State<RegistrationScreen> {
                         onPressed: textFieldIsEmpty
                             ? null
                             : () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const SecondRegScreen()));
+                                Navigator.pushNamed(
+                                    context, '/secondregscreen');
                               },
                         child: const Text("получить код для входа",
                             style: TextStyle(

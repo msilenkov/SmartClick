@@ -1,12 +1,8 @@
 import 'dart:async';
-
 import 'package:argon_buttons_flutter_fix/argon_buttons_flutter.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-// import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:smartclick/presentatios/screens/enter_screen.dart';
 
 class SecondRegScreen extends StatefulWidget {
   const SecondRegScreen({super.key});
@@ -129,11 +125,7 @@ class _SecondRegScreenState extends State<SecondRegScreen> {
                                         .requestFocus(FocusNode());
                                   });
                                   Timer(const Duration(seconds: 2), () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                const EnterScreen()));
+                                    Navigator.pushNamed(context, '/');
                                   });
                                 }
                               },
