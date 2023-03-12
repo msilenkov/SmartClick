@@ -1,13 +1,12 @@
-import 'dart:convert';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
-part 'auth_state.dart';
+import 'auth_state.dart';
 
 class AuthCubit extends HydratedCubit<AuthState> {
-  AuthCubit() : super(AuthState(autorized: false));
+  AuthCubit() : super(AuthState(autorize: 'notautorized'));
 
-  void autorize() => emit(AuthState(autorized: true));
-  void notautorize() => emit(AuthState(autorized: false));
+  void autorize() => emit(AuthState(autorize: 'autorized'));
+  void notautorize() => emit(AuthState(autorize: 'notautorized'));
 
   @override
   AuthState? fromJson(Map<String, dynamic> json) {
@@ -18,4 +17,6 @@ class AuthCubit extends HydratedCubit<AuthState> {
   Map<String, dynamic>? toJson(AuthState state) {
     return state.toMap();
   }
+
+  void registration() {}
 }

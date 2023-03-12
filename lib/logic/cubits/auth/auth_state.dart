@@ -1,23 +1,19 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-
-part of 'auth_cubit.dart';
+import 'dart:convert';
 
 class AuthState {
-  bool autorized;
-  AuthState({required this.autorized});
-
-  @override
-  String toString() => 'AuthState(autorized: $autorized)';
+  String autorize;
+  AuthState({required this.autorize});
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'autorized': autorized,
+      'autorize': autorize,
     };
   }
 
   factory AuthState.fromMap(Map<String, dynamic> map) {
     return AuthState(
-      autorized: map['autorized'] as bool,
+      autorize: map['autorize'] as String,
     );
   }
 

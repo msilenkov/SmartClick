@@ -1,7 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:smartclick/logic/utility/user_storage.dart';
 
-class UpFieldReg extends StatelessWidget {
-  const UpFieldReg({super.key});
+class UpfieldReg extends StatefulWidget {
+  const UpfieldReg({super.key});
+
+  @override
+  State<UpfieldReg> createState() => UpfieldRegState();
+}
+
+class UpfieldRegState extends State<UpfieldReg> {
+  String phoneNumber = '00000000000';
+
+  Future init() async {
+    final number = await UserStorage.getUserPhone();
+
+    setState(() {
+      phoneNumber = number ?? '';
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    init();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,9 +61,9 @@ class UpFieldReg extends StatelessWidget {
                               borderRadius:
                                   BorderRadius.all(Radius.circular(13))))),
                   onPressed: () {},
-                  child: const Text(
-                    '*6490',
-                    style: TextStyle(
+                  child: Text(
+                    "*${phoneNumber.substring(phoneNumber.length - 5)}",
+                    style: const TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w600,
                         fontSize: 17),

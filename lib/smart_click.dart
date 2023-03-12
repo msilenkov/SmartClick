@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smartclick/logic/cubits/auth/auth_cubit.dart';
 import 'package:smartclick/presentatios/router/app_router.dart';
 
+import 'logic/cubits/auth/register_cubit.dart';
+
 class SmartClick extends StatelessWidget {
   SmartClick({super.key});
   final AppRouter _appRouter = AppRouter();
@@ -10,8 +12,12 @@ class SmartClick extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<AuthCubit>(
-      create: (context) => AuthCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<AuthCubit>(create: (BuildContext context) => AuthCubit()),
+        BlocProvider<RegisterCubit>(
+            create: (BuildContext context) => RegisterCubit())
+      ],
       child: MaterialApp(
         theme: ThemeData(
             useMaterial3: true,

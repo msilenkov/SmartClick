@@ -7,6 +7,8 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:smartclick/presentatios/widgets/up_field.dart';
 import 'package:smartclick/presentatios/widgets/up_field_reg.dart';
 
+import '../../logic/cubits/auth/auth_state.dart';
+
 class EnterScreen extends StatelessWidget {
   const EnterScreen({
     super.key,
@@ -15,6 +17,7 @@ class EnterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: const Color.fromARGB(255, 238, 238, 238),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -24,10 +27,10 @@ class EnterScreen extends StatelessWidget {
                 //* Ряд верхних кнопок
                 child: BlocBuilder<AuthCubit, AuthState>(
                   builder: (context, state) {
-                    if (state.autorized == false) {
-                      return const UpField();
+                    if (state.autorize == 'autorized') {
+                      return const UpfieldReg();
                     } else {
-                      return const UpFieldReg();
+                      return const UpField();
                     }
                   },
                 )),

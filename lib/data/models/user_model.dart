@@ -1,16 +1,15 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 class UserModel {
   final String phone;
-  final bool? registration;
-  final bool? autorized;
+  final String? autorize;
   final String? accessToken;
   final String? refreshToken;
 
   UserModel({
     required this.phone,
-    this.registration,
-    this.autorized,
+    this.autorize,
     this.accessToken,
     this.refreshToken,
   });
@@ -18,8 +17,7 @@ class UserModel {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'phone': phone,
-      'registration': registration,
-      'autorized': autorized,
+      'autorize': autorize,
       'accessToken': accessToken,
       'refreshToken': refreshToken,
     };
@@ -28,9 +26,7 @@ class UserModel {
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
       phone: map['phone'] as String,
-      registration:
-          map['registration'] != null ? map['registration'] as bool : null,
-      autorized: map['autorized'] != null ? map['autorized'] as bool : null,
+      autorize: map['autorize'] != null ? map['autorize'] as String : null,
       accessToken:
           map['accessToken'] != null ? map['accessToken'] as String : null,
       refreshToken:
